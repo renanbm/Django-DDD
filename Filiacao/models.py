@@ -8,7 +8,7 @@ class Cliente(models.Model):
     Nome = models.CharField(max_length=100)
     Cpf = models.CharField(max_length=11)
     Email = models.EmailField(max_length=100, blank=True)
-    DataNascimento = models.DateField(default=datetime.min, blank=True)
+    DataNascimento = models.DateField('Data de Nascimento')
     DataCadastro = models.DateTimeField(default=datetime.now, blank=True)
     Ativo = models.BooleanField(default=True)
 
