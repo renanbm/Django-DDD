@@ -1,8 +1,17 @@
 from django.http import HttpResponse
+from .models import Cliente, Endereco
 
 
 def index(request):
-    return HttpResponse("<h1>Homepage do App de Filiação.</h1>")
+    clientes = Cliente.objects.all()
+
+    html = ''
+
+    for cliente in clientes:
+        url = '/filiacao/' + str(cliente.CodCliente) + '/'
+        html += '<a href="' + url + '">' + cliente.Nome + '</a><br>'
+
+    return HttpResponse(html)
 
 
 def obterCliente(request, codCliente):
