@@ -12,6 +12,9 @@ class Cliente(models.Model):
     DataCadastro = models.DateTimeField(default=datetime.now, blank=True)
     Ativo = models.BooleanField(default=True)
 
+    def __str__(self):
+        return "Nome: " + self.Nome + ", Cpf: " + self.Cpf
+
 
 class Endereco(models.Model):
     CodEndereco = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
