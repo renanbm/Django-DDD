@@ -1,0 +1,11 @@
+{% if clientes %}
+    <ul>
+        {% for cliente in clientes %}
+        <li>
+            <a href="/filiacao/{{ cliente.CodCliente }}">{{ cliente.Nome }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>Nenhum cliente cadastrado</h3>
+{% endif %}
