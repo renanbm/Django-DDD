@@ -1,16 +1,16 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.http import Http404
+from django.shortcuts import render
 from .models import Cliente, Endereco
 
 
 def index(request):
     clientes = Cliente.objects.all()
-    template = loader.get_template('Filiacao/index.html')
-    context = {
-        'clientes': clientes,
-    }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'Filiacao/index.html', {'clientes': clientes})
 
 
 def obterCliente(request, codCliente):
-    return HttpResponse("<h2>Detalhes para o cliente id: " + str(codCliente) + "</h2>")
+    try:
+        cliente = Cliente.objects.get(pk=codCliente)
+    except Cliente.DoesNotExist:
+        raise Http404("O cliente solicitado não existe na base de dados.")
+    return render(request, 'Filiacao/detalhes.html', {'cliente' : cliente})
